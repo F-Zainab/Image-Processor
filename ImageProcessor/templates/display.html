@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <div id="image-container">
+            <img src=" {{url_for('send_image', filename=image)}} " style="max-width: 560px;">
+        </div>
+    </div>  
+{% endblock content %}

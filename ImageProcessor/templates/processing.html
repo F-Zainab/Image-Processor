@@ -1,0 +1,209 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="header">
+        <h1 class="text-muted"> Image Processing Page </h1>
+    </div>
+    <div class="jumbotron">
+        <div id="image-container">
+            <img src=" {{url_for('send_image', filename=image_name)}} " style="max-width: 560px;">
+        </div>
+    </div>  
+    <div id="imageresponse"></div>  
+    <form>
+        <div class="form-group">
+            <input type="checkbox" class="checks" onclick="myfunction();"  id="flipH" name="transformation[]" value="FlipH" >
+            <label for="flipH"> <h6>Flip Horizontal</h6></label>
+                <input type="number" id="timesFH" min="0" max="359" placeholder="times" value="1"><br>
+
+            <input type="checkbox" class="checks"   onclick="myfunction();"  id="flipV" name="transformation[]" value="FlipV">
+            <label for="flipV"> <h6>Flip Vertical</h6></label>
+                <input type="number" id="timesFV" min="0" max="359" placeholder="times" value="1"><br>
+
+            <input type="checkbox" class="checks"  onclick="myfunction();"  id="Greyscale" name="transformation[]" value="Greyscale">
+            <label for="greyscale"> <h6>Greyscale</h6></label>
+                <input type="number" id="timesGrey" min="0" max="359" placeholder="times"  value="1"><br>
+
+            <input type="checkbox"  onclick="myfunction();"  id="rotateLeft" name="transformation[]" value="RotateL">
+            <label for="rotateLeft"> <h6>Rotate Left</h6></label>
+                <input type="number"  id="timesRL" min="0" max="359" placeholder="times"  value="1"><br>
+
+            <input type="checkbox" class="checks" onclick="myfunction();"  id="rotateRight" name="transformation[]" value="RotateR">
+            <label for="rotateRight"> <h6>Rotate Right</h6></label>
+                <input type="number" id="timesRR" min="0" max="359" placeholder="times"  value="1"><br>
+
+            <input type="checkbox" class="checks" onclick="myfunction();"  id="thumbnail" name="transformation[]" value="Thumbnail">
+            <label for="thumbnail"><h6>Thumbnail</h6> </label>
+                <input type="number" id="timesThumb" min="0" max="359" placeholder="times"  value="1"><br> 
+
+            <input type="checkbox" class="checks" onclick="myfunction();"  id="rotate" name="transformation[]" value="Rotate"> 
+            <label for="rotate"><h6>Rotate</h6> </label>
+                <input type="number" id="timesR" min="0" max="359" placeholder="times"  value="1"><br>
+                <h10>Enter the degree of rotation:<h10>
+                <input type="number" id="angle" min="-359" max="359" placeholder="degrees" value="1"><br><br>
+                    
+            <input type="checkbox" class="checks" onclick="myfunction();"  id="resize" name="transformation[]" value="Resize">
+            <label for="resize"> <h6>Resize</h6></label>
+                <input type="number" id="timesResize" min="0" max="359" placeholder="times"  value="1"><br>
+                <h10>Enter the Resize Dimensions:</h10>
+                <input type="number" placeholder="x" min="0" id="resize1"  value="1">  
+                <input type="number" placeholder="y" min="0" id="resize2"  value="1">
+                    
+                <br><br>
+            </div>
+        <button id="button" type="submit"> Submit </button>
+        </form>
+    <script src= 
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+    </script> 
+    <script>
+        //alert("clicked");
+        $(document).ready(function () {
+            $("#button").on('click', function(){
+                //alert("load");
+                var timeDict = {};
+                times0 = document.getElementById("timesFH").value;
+                timeDict["timesFH"] = times0;
+                times1 = document.getElementById("timesFV").value;
+                //alert(order);
+                timeDict["timesFV"] = times1;
+                times2 = document.getElementById("timesGrey").value;
+                timeDict["timesGrey"] = times2;
+                times3 = document.getElementById("timesRL").value;
+                timeDict["timesRL"] = times3;
+                times4 = document.getElementById("timesRR").value;
+                timeDict["timesRR"] = times4;
+                times5 = document.getElementById("timesThumb").value;
+                timeDict["timesThumb"] = times5;
+                times6 = document.getElementById("timesR").value;
+                angle = document.getElementById("angle").value;
+                timeDict["timesR"] = times6;
+                timeDict["angle"] = angle;
+                times7 = document.getElementById("timesResize").value;
+                resize1 = document.getElementById("resize1").value;
+                resize2 = document.getElementById("resize2").value;
+                timeDict["timesResize"] = times7;
+                timeDict["x"] = resize1;
+                timeDict["y"] = resize2;
+            
+                var dict = {};
+                dict.key1 = order;
+                dict.key2 = timeDict;
+
+                var js_data = JSON.stringify(dict);
+                alert("order of operations selected:: " + order);
+                $.ajax({
+                    url: '/createList',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: js_data,
+                    success: function(data){
+                        $(".col-md-4").html(data);
+                        console.log("Success")
+                    }
+                });
+                event.preventDefault();
+                //alert("send sucessfully");
+            });
+        });
+            
+        //alert("loaded");
+        var order = [];
+        var timeDict = {};
+        function myfunction(){
+            //alert("called my function")
+            var operation = document.getElementsByName("transformation[]");
+            if(operation[0].checked){
+                var val0 = operation[0].value;
+                if(order.indexOf(val0) === -1){
+                    order.push(val0);
+                    //alert(order);
+                    //times0 = document.getElementById("timesFH").value;
+                    //timeDict["timesFH"] = times0;
+                    //alert({ "timesFV": times});
+                    //alert(timeDict);
+                }
+            }
+            if(operation[1].checked){
+                var val1 = operation[1].value;
+                if(order.indexOf(val1) === -1){
+                    order.push(val1);
+                    //times1 = document.getElementById("timesFV").value;
+                    //alert(order);
+                    //timeDict["timesFV"] = times1;
+                    //alert({ "timesFV": times});
+                }
+            }
+            if(operation[2].checked){
+                var val2 = operation[2].value;
+                if(order.indexOf(val2) === -1){
+                    order.push(val2);
+                    //times2 = document.getElementById("timesGrey").value;
+                    //timeDict["timesGrey"] = times2;
+                    //alert(order);
+                }
+            }
+            if(operation[3].checked){
+                var val3 = operation[3].value;
+                if(order.indexOf(val3) === -1){
+                    order.push(val3);
+                    //times3 = document.getElementById("timesRL").value;
+                    //timeDict["timesRL"] = times3;
+                    //alert(order);
+                }
+            }
+            if(operation[4].checked){
+                var val4 = operation[4].value;
+                if(order.indexOf(val4) === -1){
+                    order.push(val4);
+                    //times4 = document.getElementById("timesRR").value;
+                    //timeDict["timesRR"] = times4;
+                    //alert(order);
+                }
+                
+            }
+            if(operation[5].checked){
+                var val5 = operation[5].value;
+                if(order.indexOf(val5) === -1){
+                    order.push(val5);
+                    //times5 = document.getElementById("timesThumb").value;
+                    //timeDict["timesThumb"] = times5;
+                    //alert(order);
+                }
+            }
+            if(operation[6].checked){
+                var val6 = operation[6].value;
+                if(order.indexOf(val6) === -1){
+                    order.push(val6);
+                    times6 = document.getElementById("timesR").value;
+                    angle = document.getElementById("angle").value;
+                    //timeDict["timesR"] = times6;
+                    //timeDict["angle"] = angle;
+                    //alert(order);
+                }
+            }
+            if(operation[7].checked){
+                var val7 = operation[7].value;
+                if(order.indexOf(val7) === -1){
+                    order.push(val7);
+                    times7 = document.getElementById("timesResize").value;
+                    resize1 = document.getElementById("resize1").value;
+                    resize2 = document.getElementById("resize2").value;
+                    //timeDict["timesResize"] = times7;
+                    //timeDict["x"] = resize1;
+                    //timeDict["y"] = resize2;
+                    //alert(order);
+                }
+            }
+            
+        }
+        
+        
+    </script>
+
+{% endblock content %}
+
+
+
+
+

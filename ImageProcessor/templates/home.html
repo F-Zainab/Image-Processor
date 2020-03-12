@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1> Upload your Image </h1>
+        <p class="lead"></p>
+        <form id="upload-image" action="/upload" method="POST" enctype="multipart/form-data">
+            <input id="file-picker" type="file" name="file" accept="image/*" class="hidden" onchange="this.form.submit()"> 
+        </form>
+    </div>
+    <div>
+        <h2> Operations Available </h2>
+    </div>
+    <div class="row marketing">
+        
+        <div class="col-lg-6">
+            <h1>---------------------------------------------------------------</h1>
+            <h5>Flip Image</h5>
+            <p>Flip your uploaded image either horizontally or vertically.</p>
+
+            <h5>Resize Image</h5>
+            <p>Select your start and stop points and resize your image accordingly.</p> 
+            
+            <h5> Generate Thumbnail </h5>
+            <p> Resize your image into a thumbnail. </p>
+
+        </div>
+
+        <div class="col-lg-6">
+            <h1>---------------------------------------------------------------</h1>
+            <h5>Rotate Image</h5>
+            <p>Enter the angle (in degrees) to rotate your image clockwise.</p>
+
+            <h5>Rotate Image Left/Right</h5>
+            <p> Rotate your image 90 degree left/right. </p>
+            
+            <h5>Grayscale</h5>
+            <p> Convert your image to grayscale. </p>
+        </div>
+    </div>
+{% endblock content %} 
