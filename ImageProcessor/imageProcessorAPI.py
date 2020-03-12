@@ -48,7 +48,6 @@ def processing():
 
 @app.route('/createList', methods=["POST"])
 def createList():
-    #filename = request.form['file']
     print("entered createList")
     array1 = request.get_json()
     print("printing array:::::::::::::::::::::")
@@ -59,14 +58,11 @@ def createList():
     dictOrder = array1["key2"]
     print("print other inputa::::::::::::::::::::")
     print(dictOrder)
-    #print(array)
     
     name = randomString(stringLength=5)
     image_name = (name + '.png')
     print(image_name)
     
-    #transformationList = request.form.getlist('transformation[]')
-    #print(transformationList)
     
     # open and process image
     target = os.path.join(APP_ROOT, 'images')
@@ -93,12 +89,10 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
 
         if item == "FlipV":
             v = dictOrder["timesFV"]
             print(v)
-            #print("value = [{}]".format(v))
             if not v or int(v) == 1:
                 img = img.transpose(Image.FLIP_TOP_BOTTOM)
                 # save returned image
@@ -115,12 +109,10 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
 
         if item == "Greyscale":
             v = dictOrder["timesGrey"]
             print(v)
-            #print("value = [{}]".format(v))
             if not v or int(v) == 1:
                 img = ImageOps.grayscale(img)
                 # save returned image
@@ -137,11 +129,9 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
                     
         if item == "RotateL":
             v = dictOrder["timesRL"]
-            #print("value = [{}]".format(v))
             if not v or int(v) == 1:
                 img = img.rotate(90)
                 # save returned image
@@ -157,11 +147,9 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
 
         if item == "RotateR":
             v = dictOrder["timesRR"]
-            #print("value = [{}]".format(v))
             if not v or int(v) == 1:
                 img = img.rotate(270)
                 # save returned image
@@ -177,11 +165,9 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
 
         if item == "Thumbnail":
             v = dictOrder["timesThumb"]
-           # print("value = [{}]".format(v))
             if not v or int(v) == 1:
                 img.thumbnail((200,200))
                 # save returned image
@@ -197,11 +183,9 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
 
         if item == "Rotate":
             v = dictOrder["timesR"]
-            #print("value = [{}]".format(v))
             if not v or int(v) == 1:
                 angle = dictOrder["angle"]
                 img = img.rotate(-1*int(angle))
@@ -219,7 +203,6 @@ def createList():
                     if os.path.isfile(destination):
                         os.remove(destination)
                     img.save(destination)
-            print("transformation performed")
 
         if item == "Resize":
             x = int(dictOrder["x"])
