@@ -24,11 +24,11 @@ To test the app locally, run `imageProcessorAPI.py` and navigate to `localhost:5
 
 Use the `CHOOSE FILE` button to upload the desired image file. 
 
-![image]()
+![image](https://github.com/F-Zainab/Image-Processor/blob/master/Screenshot%20(152)_LI.jpg)
 
 If successful, the browser will redirect to the processing page.
 
-![web2]()
+![image](https://github.com/F-Zainab/Image-Processor/blob/master/Screenshot%20(141).png)
 
 Click on checkbox and input the desired parameters to apply the corresponding transformation. The modified image will be opened with your default image viewing program. The parameters are now sent through the `AJAX` request with a `POST` method.
 The transformations would be performed and image would be displayed.
