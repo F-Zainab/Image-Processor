@@ -1,5 +1,4 @@
-# Image-Processor
-# Image API
+# Image-Processor API
 Image Processing API written in Python, using the Pillow library for image manipulation and exposing the functions with the Flask framework. The API has been tested with jpg, png, jpeg and bmp formats and is able to perform following operations on the image:
 * `Flip Horizontal`
 * `Flip Vertical`
@@ -25,11 +24,11 @@ To test the app locally, run `imageProcessorAPI.py` and navigate to `localhost:5
 
 Use the `CHOOSE FILE` button to upload the desired image file. 
 
-![image](https://user-images.githubusercontent.com/29493411/27295175-3b0a1af0-551c-11e7-94fd-7b4106330537.PNG)
+![image]()
 
 If successful, the browser will redirect to the processing page.
 
-![web2](https://user-images.githubusercontent.com/29493411/27295176-3b0d56de-551c-11e7-9cc8-0628eecd22d0.PNG)
+![web2]()
 
 Click on checkbox and input the desired parameters to apply the corresponding transformation. The modified image will be opened with your default image viewing program. The parameters are now sent through the `AJAX` request with a `POST` method.
 The transformations would be performed and image would be displayed.
