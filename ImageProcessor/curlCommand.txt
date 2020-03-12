@@ -1,3 +1,6 @@
+curl http://localhost:5000 --dump -header -
+
+
 curl -F file=@c://Fariha//images//image.jpg http://localhost:5000/upload
 
 
