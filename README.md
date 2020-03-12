@@ -33,4 +33,6 @@ If successful, the browser will redirect to the processing page.
 Click on checkbox and input the desired parameters to apply the corresponding transformation. The modified image will be opened with your default image viewing program. The parameters are now sent through the `AJAX` request with a `POST` method.
 The transformations would be performed and image would be displayed.
 
+![image](https://github.com/F-Zainab/Image-Processor/blob/master/Screenshot%20(143).png)
+
 ### Refer to [Documentation](https://github.com/F-Zainab/Image-Processor/blob/master/ImageProcessor/Image%20Processor%20Documentation.docx) for more details.
