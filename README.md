@@ -35,4 +35,4 @@ The transformations would be performed and image would be displayed.
 
 ![image](https://github.com/F-Zainab/Image-Processor/blob/master/Screenshot%20(143).png)
 
-### Refer to [Documentation](https://github.com/F-Zainab/Image-Processor/blob/master/ImageProcessor/Image%20Processor%20Documentation.docx) for more details.
+### Refer to [Documentation](https://github.com/F-Zainab/Image-Processor/blob/master/Image-ProcessorDocumentation.pdf) for more details.
